@@ -5,7 +5,7 @@ import re
 # --- 설정 ---
 # 1. 파일들을 스캔할 폴더 경로를 지정하세요.
 # 예: 'C:\Users\YourName\Documents\MyFiles'
-TARGET_DIRECTORY = 'D:\\Google\\GF2\\GF2_Exilium_Data\\StreamingAssets\\asdfasdf'
+TARGET_DIRECTORY = 'C:\Users\YourName\Documents\MyFiles'
 
 # 2. 생성될 데이터베이스 파일 이름입니다.
 DATABASE_FILE = 'file_index.db'
