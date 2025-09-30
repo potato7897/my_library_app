@@ -1,11 +1,8 @@
 import os
 import sqlite3
 import re
-
-# --- 설정 ---
-# 1. 파일들을 스캔할 폴더 경로를 지정하세요.
-# 예: 'C:\Users\YourName\Documents\MyFiles'
-TARGET_DIRECTORY = 'C:\Users\YourName\Documents\MyFiles'
+import tkinter as tk
+from tkinter import filedialog
 
 # 2. 생성될 데이터베이스 파일 이름입니다.
 DATABASE_FILE = 'file_index.db'
@@ -47,7 +44,7 @@ def extract_info_from_filename(filename):
 
     return None
 
-def process_files():
+def process_files(TARGET_DIRECTORY):
     """지정된 디렉토리와 모든 하위 디렉토리의 파일들을 처리하고 데이터베이스에 기록합니다."""
     if not os.path.isdir(TARGET_DIRECTORY):
         print(f"오류: 지정된 디렉토리 '{TARGET_DIRECTORY}'를 찾을 수 없습니다.")
@@ -93,7 +90,21 @@ def process_files():
 def main():
     """메인 실행 함수"""
     setup_database()
-    process_files()
+
+    # ===== Tkinter를 사용해 폴더 선택 대화상자를 띄우는 부분 =====
+    # 불필요한 기본 Tk 창을 숨김
+    root = tk.Tk()
+    root.withdraw()
+
+    # 사용자에게 폴더 선택을 요청
+    target_path = filedialog.askdirectory(title="파일을 스캔할 폴더를 선택하세요")
+    
+    if not target_path:
+        print("폴더가 선택되지 않았습니다. 프로그램을 종료합니다.")
+        return
+    
+    print(f"선택된 폴더: {target_path}")
+    process_files(target_path) # 선택된 경로를 process_files 함수에 전달
 
 if __name__ == "__main__":
     main()
