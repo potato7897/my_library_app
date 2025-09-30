@@ -38,7 +38,7 @@ def extract_info_from_filename(filename):
     다른 형식을 원하시면 아래 re.search의 정규표현식을 수정하세요.
     """
     # 'rj', 'RJ', '거' 뒤에 오는 5자리 이상의 연속된 숫자를 찾습니다.
-    match = re.search(r'(?:rj|RJ|거)(\d{5,})', filename)
+    match = re.search(r'(?i)(?:rj|거)(\d{5,})', filename)
     if match:
         return match.group(1)
 
